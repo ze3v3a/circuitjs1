@@ -1,0 +1,8 @@
+Thanks to:
+
+- Edward Calver  : for 15 new components and other improvements. 
+- Rodrigo Hausen : for file import/export and many other UI improvements. 
+- Mike Rollins   : for the Zener diode code. 
+- Julius Schmidt : for the spark gap code and some examples. 
+- Dustin Soodak  : for help with the user interface improvements. 
+- Jacob Calvert  : for the T Flip Flop.

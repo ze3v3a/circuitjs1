@@ -1,0 +1,24 @@
+v2.2.3b1, 2019-03-13 -- First Maintenance Fixes
+
+* Fixed file permission of VaractorElm.java 
+* Added (this) CHANGES.txt
+* Moved COPYING.txt to LICENSE.txt (GPLv2)
+* Updated and moved CONTRIBUTION.md to docs/
+* Updated .gitignore
+* Added:
+ - ISSUE_TEMPLATE.md
+ - CODE_OF_CONDUCT.md
+ - CREDITS.txt
+
+
+v2.2.3, 2019-03-12 -- Initial Clone
+
+This is effectively a shallow clone that has:
+* squashed all the previous commits into one
+* removed all branches (if any)
+
+It corresponds exactly to the original pfalstad repo as of:
+
+date:    2019-03-10
+short:   11a8efa
+commit:  https://github.com/pfalstad/circuitjs1/commit/11a8efa6d116e1134b0c5a64c17e347a191165bc
