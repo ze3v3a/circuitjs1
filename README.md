@@ -14,7 +14,7 @@
 [9]: http://isitmaintained.com/badge/resolution/E3V3A/circuitjs1.svg
 [10]: http://isitmaintained.com/project/E3V3A/circuitjs1 "Average time to resolve an issue"
 
-[11]: https://img.shields.io/badge/Maintained%3F-low-orange.svg
+[11]: https://img.shields.io/badge/Maintained%3F-yes-green.svg "low-orange"
 [12]: https://github.com/pfalstad/circuitjs1/graphs/commit-activity "Commit Activity"
 [13]: https://img.shields.io/github/last-commit/pfalstad/circuitjs1.svg
 [14]: https://github.com/pfalstad/circuitjs1/commits/master "Last commits to Master branch"
@@ -24,24 +24,24 @@
 *CircuitJS1* is an electronic circuit simulator that runs in your browser. It allow you to quickly design and test 
 a wide variety of circuits. The easy-to-use schemtics design UI allow you to *design, analyze, test, load* or *save* any schemtic using standard component symbols. In addition the circuit current-flow is dynamically and clearly displayed, which is a great help for both beginners and expert electrical engineers to undertstand how various components work and interact.
 
----
+  
 
 **IMPORTANT**
 
 > :exclamation: This is a ligh-weight *shallow* fork of the original [CircuitJS1](https://github.com/pfalstad/circuitjs1) project that does not contain any commit history and where all branches has been removed. It was made in order to simplify and expand the build process and to improve the build documentation. As such, its source path was modified to support both *Maven* and *Gradle* builds. To make this migration easy, we have included the shell script `ecl2mav.sh` that does this automatically from any clone of the original repository. This fork **is not meant to replace that project**, and rather complement it in such a way that *builds* can be handled more efficiently. :exclamation: 
 
-<sub> For bug reports or questions regarding the original project and its status,\
+<sub> For bug reports or questions regarding the original project and its status,
 please refer to the original *CircuitJS1* repositories and maintainers:  
-[Iain Sharp](https://github.com/sharpie7/circuitjs1) at sharpie7@pinedragon.com.  
-[Paul Falstad](https://github.com/pfalstad/circuitjs1) at paul@falstad.com.
+[Iain Sharp](https://github.com/sharpie7/circuitjs1) and [Paul Falstad](https://github.com/pfalstad/circuitjs1).
 </sub>
 
 
 ---
 
-Example Output:
+Screenshots:
 
 ![Full](./docs/screen1.png)
+<sub>Holding mouse over a component shows all its values.</sub>
 
 ![Full](./docs/screen2.png)
 
@@ -62,7 +62,8 @@ For an up-to-date hosted version of the application see:
 * Paul's Page: [http://www.falstad.com/circuit/](http://www.falstad.com/circuit/)
 * Iain's Page: [http://lushprojects.com/circuitjs/](http://lushprojects.com/circuitjs/)
 
-<sub>**FAQ:**  
+**FAQ:**
+<sub>
 WTF is GWT? - It is `Google Web-Toolkit`, which for our purposes is a Java to JS compiler.  
 WTF is WAR? - It is just a renamed ZIP file called `Web Application aRchive` to indicate its contents and use.
 </sub>
@@ -73,7 +74,7 @@ WTF is WAR? - It is just a renamed ZIP file called `Web Application aRchive` to 
 * [Java JDK 1.8](https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
 * [Maven `3.6.0`](https://maven.apache.org/download.cgi) (if used)
 * [Gradle `5.2.1`](https://gradle.org/releases/) (if used)
-* [Node.js]() / [Electron `v3.1.6`](https://github.com/electron/electron/releases) (if used)
+* [Node.js](https://nodejs.org/en/) / [Electron `v3.1.6`](https://github.com/electron/electron/releases) (if used)
 
 ---
 
@@ -179,8 +180,10 @@ md -Path 'C:\mybin\maven'
 
 Download Maven from [here](https://maven.apache.org/) or use *wget* with:
 ```bash
-wget https://www-eu.apache.org/dist/maven/maven-3/3.6.0/binaries/apache-maven-3.6.0-bin.zip
+cd "C:\mybin\maven"
+wget -q https://www-eu.apache.org/dist/maven/maven-3/3.6.0/binaries/apache-maven-3.6.0-bin.zip
 # Unzip in the previously created directory
+unzip apache-maven-3.6.0-bin.zip
 ```
 
 Add the Maven binaries to your PATH:
@@ -276,12 +279,12 @@ wget -q https://services.gradle.org/distributions/gradle-5.2.1-bin.zip
 unzip gradle-5.2.1-bin.zip
 
 # (c) Add the GRADLE_HOME environment variable 
-#	  /cygdrive/c/Gradle/gradle-5.2.1
+#	    /cygdrive/c/Gradle/gradle-5.2.1
 #setx GRADLE_HOME "C:\Gradle\gradle-5.2.1"
 export GRADLE_HOME="C:\Gradle\gradle-5.2.1"
 
 # (d) Add `GRADLE_HOME/bin` to your PATH
-#	  /cygdrive/c/Gradle/gradle-5.2.1/bin
+#	    /cygdrive/c/Gradle/gradle-5.2.1/bin
 #setx PATH %PATH%;"C:\Gradle\gradle-5.2.1\bin"
 export PATH="${PATH}:/cygdrive/c/mybin/maven/bin"
 ```
@@ -308,6 +311,79 @@ gradle -v
 
 ```
 
+Finally, to compile and build your site with Gradle, run this:
+```bash
+# 1. Run Gradle build with verbose output:
+gradle build --console verbose --info
+# 2. Create the web-site directory from the build files:
+gradle makeSite --console verbose --info
+# 3. To cleanup and remove the target, build and site directories
+gradle cleanUp
+```
+
+This should produce a *build* directory tree...
+
+```bash
+# tree -L 4 build
+
+build
+└── gwt
+    ├── out
+    │   ├── circuitjs1
+    │   │   ├── circuits/                                   # dir: all available circuit examples in *.txt format
+    │   │   ├── gwt/                                        # GWT: CSS and images
+    │   │   ├── 1D496241F7B7A990B9FEB65CDF3D7DBB.cache.js   # GWT: browser specific JS compiled from Java
+    │   │   ├── 3FBAC62E54E7F0A089DE9C85F9A9F230.cache.js   # -
+    │   │   ├── D3AF1EC81186E07551BDA3A9221B401D.cache.js   # -
+    │   │   ├── DAB3DE9BEE7DF2F7FF4AB28C1B89873C.cache.js   # -
+    │   │   ├── ECB8894B653C5539517671BF4DE852D2.cache.js   # -
+    │   │   ├── circuitjs1.devmode.js                       # Special features when using the browser's Develop Mode
+    │   │   ├── circuitjs1.nocache.js                       # The "nocache" file is where "Deferred Binding" occurs. 
+    │   │   ├── clear.cache.gif                             # GWT: "GIF89a"
+    │   │   ├── compilation-mappings.txt                    # GWT: "user.agent" mappings to each *.cache.js 
+    │   │   ├── locale_da.txt                               # Language Translations:  Danish
+    │   │   ├── locale_de.txt                               # Language Translations:  German
+    │   │   ├── locale_pl.txt                               # Language Translations:  Polish
+    │   │   ├── locale_ru.txt                               # Language Translations:  Russian
+    │   │   └── setuplist.txt                               # Menu list of all available circuits in ./circuits/
+    │   └── WEB-INF                                 
+    │       └── deploy                                      
+```
+<subscript>Further described [here](http://www.gwtproject.org/doc/latest/FAQ_DebuggingAndCompiling.html).</subscript>
+
+...and a *site* directory:
+
+```bash
+# tree --dirsfirst -L 2 site/
+site/
+├── circuitjs1
+│   ├── circuits
+│   ├── gwt
+│   ├── 014F2EE441B55F13F96AEEFFEAAE10AF.cache.js
+│   ├── 38C2ADEAD59B13076AE44CA02CA86D13.cache.js
+│   ├── 9AFF988750F0236ADD6749A76829ABED.cache.js
+│   ├── 9D3BD56E2F75069471923CE4BDEE8D81.cache.js
+│   ├── circuitjs1.devmode.js
+│   ├── circuitjs1.nocache.js
+│   ├── clear.cache.gif
+│   ├── compilation-mappings.txt
+│   ├── E0277C92968F5D0AD291F495BA896152.cache.js
+│   ├── locale_da.txt
+│   ├── locale_de.txt
+│   ├── locale_pl.txt
+│   ├── locale_ru.txt
+│   └── setuplist.txt
+├── circuitjs.html        # Full-page version of application
+├── customfunction.html   # 
+├── customlogic.html      # 
+├── iframe.html           # iframe version of application
+├── index.html            # 
+└── shortrelay.php        # 
+```
+
+Now, just open `site/circuitjs.html` with your browser and enjoy!
+
+
 
 **`3. Install using Electron`**
 
@@ -316,7 +392,7 @@ The installation process for the Electron framework is already better described
 
 **`4. Install using Eclipse`**
 
-Don't! But if you insist, use the [these](https://github.com/pfalstad/circuitjs1) instructions.
+If you insist, use the [these](https://github.com/pfalstad/circuitjs1) instructions.
 
 
 #### (C) Edit the circuitJS1 configuration files
@@ -333,13 +409,13 @@ Nothing to configure
 Unless you want to host the application on your own PC, 
 one of the easiest ways is to host the circuitJS1 application 
 here on github, using your own [github page](https://pages.github.com/) 
-by using your own domain on `<username>.githib.io`. To do this:
+by using your own domain on `https://<username>.githib.io/`. To do this:
 
 1. Create a new github repo with the name: 
 	`<YourGithubUserName>.github.io`
    (You can only use one per username.)
 
-2. `TBA`
+2. **`TBA`**
 
 
 ---
@@ -370,26 +446,14 @@ files on to your webserver. Once that is done, you also need to do some configur
 
 * Customize the header of the file **`circuitjs1.html`** to include your tracking codes and favicon etc.
 * Customize the **`iframe.html`** file to include any branding you want, to appear in the right hand panel of the application.
-* *`optional`* - Customize **`shortrelay.php`** server-side script to act as a relay to the [XXX]() URL shortening service
-* *`optional`* - Customize **`circuitjs1.html`** to include your [Dropbox]() API app-key to enable remote loading and saving of circuits.
+* *`optional`* - Customize **`shortrelay.php`** server-side script to act as a relay to the [TinyUrl](http://tinyurl.com/) URL shortening service
+* *`optional`* - Customize **`circuitjs1.html`** to include your [Dropbox](https://www.dropbox.com/) API app-key to enable remote loading and saving of circuits.  
 <sub>(You can also rename `circuitjs1.html`, but then you also need to update `shortrelay.php` accordingly)</sub>.
 
 
 The link for the full-page version of the application is now:\
 **`http://<your host>/<your path>/circuitjs1.html`**
 
-Just for reference the files should look like this
-
-```
--+ Directory containing the front page (eg "circuitjs")
-  +- circuitjs.html - full page version of application
-  +- iframe.html - see notes above
-  +- shortrelay.php - see notes above
-  ++ circuitjs1 (directory)
-   +- various files built by GWT
-   +- circuits (directory, containing example circuits)
-   +- setuplist.txt (index in to example circuit directory)
-```
    
 ### Page Embedding
 
@@ -400,15 +464,15 @@ You can also add query parameters to the link to change the applications startup
 The following URL parameters are supported:
 
 ```js
-.../circuitjs1.html?cct=<string>                     // Load the circuit from the URL (like the # in the Java version)
+.../circuitjs1.html?cct=<string>                     // Load the circuit from the encoded URL <string> itself
 .../circuitjs1.html?startCircuit=<filename>          // Loads the circuit named "filename" from the "Circuits" directory
-.../circuitjs1.html?startCircuitLink=<URL>           // Loads the circuit from the specified URL
+.../circuitjs1.html?startCircuitLink=<URL>           // Loads the circuit from the specified URL (Need Dropbox!)
 .../circuitjs1.html?euroResistors=true               // Force "Euro" style (rectangular) resistors *
 .../circuitjs1.html?usResistors=true                 // Force "US" style (wiggly lines) resistors *
 .../circuitjs1.html?whiteBackground=<true|false>     // Use a white background (default: black)
-.../circuitjs1.html?conventionalCurrent=<true|false> // Use 
+.../circuitjs1.html?conventionalCurrent=<true|false> // Use coventional current flow (from + to -)
 ```
-<sub>`*` - If not specified the resistor style will be based on the user's browser's language preferences.</sub>
+<sub>`*` - If not specified the resistor style will be based on the browser's language preferences.</sub>
 
 
 ### Building as an Electron application

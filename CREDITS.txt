@@ -1,8 +1,20 @@
-Thanks to:
+Many thanks to the following contributors.
 
-- Edward Calver  : for 15 new components and other improvements. 
-- Rodrigo Hausen : for file import/export and many other UI improvements. 
-- Mike Rollins   : for the Zener diode code. 
-- Julius Schmidt : for the spark gap code and some examples. 
-- Dustin Soodak  : for help with the user interface improvements. 
-- Jacob Calvert  : for the T Flip Flop.
+Coding, Examples and Components:
+
+- Andre Adrian          : for improved emitter coupled oscillator
+- Ben Hayden            : for the scope spectrum
+- Colin Howell          : for code improvements
+- Dustin Soodak         : for help with the user interface improvements
+- Edward Calver         : for 15 new components and other improvements
+- Felthry               : for many circuit examples
+- Jacob Calvert         : for the T-Flip-Flop
+- Julius Schmidt        : for the spark gap code and some examples
+- Mike Rollins          : for the Zener diode code
+- Rodrigo Hausen        : for the file import/export and many other UI improvements
+
+Translations:
+
+- Krystian Sławiński    : for the Polish translation
+- Thomas Reitinger      : for the German translation
+- Usevalad Khatkevich   : for the Russian translation
