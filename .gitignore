@@ -1,8 +1,10 @@
-#GWT cache
-gwt-unitCache/
-war/circuitjs1/
-war/circuitjs1/circuits/
-war/WEB-INF/
+#======================================
+# OS Specific Files
+#======================================
+
+#----------------------------
+# Windows
+#----------------------------
 
 # Windows image file caches
 Thumbs.db
@@ -23,13 +25,9 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-# =========================
-# Operating System Files
-# =========================
-
-# OSX
-# =========================
-
+#----------------------------
+# MacOS/OSX
+#----------------------------
 .DS_Store
 .AppleDouble
 .LSOverride
@@ -47,3 +45,42 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
+
+#----------------------------
+# Linux
+#----------------------------
+
+
+#======================================
+# Project Specific Files
+#======================================
+
+#----------------------------
+# GWT cache
+#----------------------------
+gwt-unitCache/
+war/circuitjs1/
+war/circuitjs1/circuits/
+war/WEB-INF/
+
+#----------------------------
+# Eclipse
+#----------------------------
+
+
+#----------------------------
+# For Maven builds
+#----------------------------
+target/
+
+#----------------------------
+# For Gradle builds
+#----------------------------
+.gradle/
+gradle/
+build/
+site/
+
+settings.gradle
+gradlew
+gradlew.bat
